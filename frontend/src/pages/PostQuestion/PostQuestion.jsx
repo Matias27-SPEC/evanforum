@@ -116,7 +116,7 @@ export default function PostQuestion() {
       console.log("POST QUESTION BODY:", requestBody);
 
       const response = await axios.post(
-        "http://localhost:3777/api/questions",
+        "https://evanforum-production.up.railway.app/api/questions",
         requestBody,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -153,7 +153,7 @@ export default function PostQuestion() {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        "http://localhost:3777/api/questions/draft-coach",
+        "https://evanforum-production.up.railway.app/api/questions/draft-coach",
         formData,
         {
           headers: { Authorization: `Bearer ${token}` },

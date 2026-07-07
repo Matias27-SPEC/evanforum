@@ -147,13 +147,13 @@ export default function Dashboard() {
           "semantic",
         );
 
-        // Only call the vector endpoint for semantic; everything else → base URL
+        // Only call the vector endpoint for semantic; everything else → base URL 
         const queryParams = new URLSearchParams();
         if (tagParam) queryParams.set("tag", tagParam);
 
         const targetUrl = semanticQuery
-          ? `http://localhost:3777/api/questions/search?query=${encodeURIComponent(semanticQuery)}`
-          : `http://localhost:3777/api/questions${queryParams.toString() ? `?${queryParams}` : ""}`;
+          ? `https://evanforum-production.up.railway.app/api/questions/search?query=${encodeURIComponent(semanticQuery)}`
+          : `https://evanforum-production.up.railway.app/api/questions${queryParams.toString() ? `?${queryParams}` : ""}`;
 
         const response = await axios.get(targetUrl, {
           headers: { Authorization: `Bearer ${token}` },

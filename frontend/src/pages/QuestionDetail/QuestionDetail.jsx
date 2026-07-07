@@ -72,7 +72,7 @@ export default function QuestionDetail() {
         const token = localStorage.getItem("token");
 
         const { data } = await axios.get(
-          `http://localhost:3777/api/questions/${questionHash}`,
+          `https://evanforum-production.up.railway.app/api/questions/${questionHash}`,
           { headers: { Authorization: `Bearer ${token}` } },
         );
 
@@ -94,7 +94,7 @@ useEffect(() => {
       setRelatedLoading(true);
       const token = localStorage.getItem("token");
       const { data } = await axios.get(
-        `http://localhost:3777/api/questions/${questionHash}/similar`,
+        `https://evanforum-production.up.railway.app/api/questions/${questionHash}/similar`,
         { headers: { Authorization: `Bearer ${token}` } },
       );
       setRelatedQuestions(data.data ?? []);
@@ -116,7 +116,7 @@ useEffect(() => {
       setPostError(null);
       const token = localStorage.getItem("token");
       const { data } = await axios.post(
-        `http://localhost:3777/api/answers`,
+        `https://evanforum-production.up.railway.app/api/answers`,
         {
           questionId: question.id,
           content: answerText.trim(),
@@ -148,11 +148,11 @@ useEffect(() => {
       const token = localStorage.getItem("token");
       const isClearingVote = Number(answer.currentUserVote) === value;
       const { data } = isClearingVote
-        ? await axios.delete(`http://localhost:3777/api/answers/${answer.id}/vote`, {
+        ? await axios.delete(`https://evanforum-production.up.railway.app/api/answers/${answer.id}/vote`, {
             headers: { Authorization: `Bearer ${token}` },
           })
         : await axios.put(
-            `http://localhost:3777/api/answers/${answer.id}/vote`,
+            `https://evanforum-production.up.railway.app/api/answers/${answer.id}/vote`,
             { value },
             { headers: { Authorization: `Bearer ${token}` } },
           );
@@ -178,7 +178,7 @@ useEffect(() => {
     try {
       const token = localStorage.getItem("token");
       const { data } = await axios.put(
-        `http://localhost:3777/api/answers/${answerId}/accept`,
+        `https://evanforum-production.up.railway.app/api/answers/${answerId}/accept`,
         {},
         { headers: { Authorization: `Bearer ${token}` } },
       );
@@ -201,7 +201,7 @@ useEffect(() => {
       setFitResult(null);
       const token = localStorage.getItem("token");
       const { data } = await axios.post(
-        `http://localhost:3777/api/questions/${questionHash}/answer-fit`,
+        `https://evanforum-production.up.railway.app/api/questions/${questionHash}/answer-fit`,
         { answerText: answerText.trim() },
         { headers: { Authorization: `Bearer ${token}` } },
       );
