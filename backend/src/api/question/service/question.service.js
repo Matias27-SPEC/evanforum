@@ -217,11 +217,8 @@ export const getQuestionsService = async (filters) => {
     JOIN users u ON u.user_id = q.user_id
     ${whereClause}
   `;
-  
-  const countRows = await safeExecute(
-  countSql,
-  params.length ? params : undefined
-);
+
+  const countRows = await safeExecute(countSql, params);
   const totalCount = countRows[0]?.totalCount || 0;
 
   // Get paginated results
