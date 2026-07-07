@@ -241,15 +241,10 @@ export const getQuestionsService = async (filters) => {
     ${whereClause}
     GROUP BY q.question_id, u.user_id
     ORDER BY ${sortColumn} ${normalizedSortOrder}
-    LIMIT ? OFFSET ?
+    LIMIT ${normalizedLimit} OFFSET ${normalizedOffset}
   `;
 
-  const rows = await safeExecute(listSql, [
-    ...params,
-    normalizedLimit,
-    normalizedOffset,
-  ]);
-
+   const rows = await safeExecute(listSql, params);
   const tagsByQuestion = await getTagsForQuestions(rows.map((row) => row.id));
 
   return {
